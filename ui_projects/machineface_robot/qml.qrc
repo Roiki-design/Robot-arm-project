@@ -1,0 +1,39 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Machineface/Machineface.qml</file>
+        <file>Machineface/description.ini</file>
+        <file>Machineface/ButtonJog.qml</file>
+        <file>Machineface/DisplayPanel.qml</file>
+        <file>Machineface/PreviewTab.qml</file>
+        <file>Machineface/JogControlTab.qml</file>
+        <file>Machineface/ApplicationToolBar.qml</file>
+        <file>Machineface/MdiTab.qml</file>
+        <file>Machineface/GCodeTab.qml</file>
+        <file>Machineface/SettingsTab.qml</file>
+        <file>Machineface/ToggleSettingCheck.qml</file>
+        <file>Machineface/OverlayDialog.qml</file>
+        <file>Machineface/AboutDialog.qml</file>
+        <file>Machineface/TemperatureControl.qml</file>
+        <file>Machineface/FanControl.qml</file>
+        <file>Machineface/LightControl.qml</file>
+        <file>Machineface/VelocityExtrusionControl.qml</file>
+        <file>Machineface/GantryConfigControl.qml</file>
+        <file>Machineface/VideoTab.qml</file>
+        <file>Machineface/ApplicationMenu.qml</file>
+        <file>Machineface/ExtruderJogButton.qml</file>
+        <file>Machineface/HomeButton.qml</file>
+        <file>Machineface/JogVelocityKnob.qml</file>
+        <file>Machineface/JogKnob.qml</file>
+        <file>Machineface/FontIcon.qml</file>
+        <file>Machineface/icons/MaterialIcons-Regular.ttf</file>
+        <file>Machineface/JogKeyHandler.qml</file>
+        <file>Init.qml</file>
+        <file>Machineface/CustomButtonStyle.qml</file>
+        <file>Machineface/DisplayPanelBase.qml</file>
+        <file>Machineface/Singletons/Info.qml</file>
+        <file>Machineface/Singletons/qmldir</file>
+        <file>Machineface/FeedrateKnob.qml</file>
+        <file>Machineface/InputPanel.qml</file>
+    </qresource>
+</RCC>
