@@ -3,8 +3,8 @@ import QtQuick.Controls 1.1
 import Machinekit.Application.Controls 1.0
 
 Button {
-    property int axis: 0
-    property string axisName: "X"
+    property int axis: -1
+    property string axisName: "All"
     property string color: "green"
     property int fontSize: 10
 
@@ -25,3 +25,8 @@ Button {
     iconSource: " "
 }
 
+
+/*##^## Designer {
+    D{i:0;autoSize:true;height:0;width:0}
+}
+ ##^##*/

@@ -6,13 +6,20 @@ import QtQuick.Window 2.0
 Tab {
     id: tab
     title: qsTr("Jog")
-
-    Item {
-        ButtonJog {
-            width: Math.min(parent.width * 0.85, parent.height)
-            height: width
-            anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
+    Rectangle{
+        anchors.fill: parent
+        color: "black"
+         Item {
+             ButtonJog {
+                anchors.fill: parent
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
         }
     }
+    }
 }
+
+/*##^## Designer {
+    D{i:0;autoSize:true;height:767;width:425}
+}
+ ##^##*/

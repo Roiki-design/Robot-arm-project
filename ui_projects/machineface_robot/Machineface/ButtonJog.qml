@@ -1,9 +1,10 @@
 import QtQuick 2.2
 import QtQuick.Layouts 1.2
-import QtQuick.Controls 1.2
+import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.2
 import QtQuick.Window 2.0
 import QtQml 2.2
+import QtQuick.Controls.Imagine 2.12
 import Machinekit.Application 1.0
 import Machinekit.Application.Controls 1.0
 import Machinekit.Service 1.0
@@ -30,18 +31,6 @@ ApplicationItem {
     property int fontSize: baseSize * 0.028
 
     id: root
-
-    HalRemoteComponent {
-        id: halRemoteComponent
-        halrcmdUri: halrcmdService.uri
-        halrcompUri: halrcompService.uri
-        ready: (halrcmdService.ready && halrcompService.ready) || connected
-        name: "fdm-ve-jog"
-        containerItem: extruderControl
-        create: false
-        onErrorStringChanged: console.log(errorString)
-        onConnectedChanged: root.eWasConnected = true
-    }
 
     JogDistanceHandler {
         id: defaultHandler
@@ -77,211 +66,103 @@ ApplicationItem {
                     axis: 0
                 }
 
-                Grid {
-                    id: grid1
-                    y: 307
-                    width: 400
-                    height: 165
-                    spacing: 20
+                RowLayout {
+                    id: jogButtonGrid
+                    width:parent * 0.6
+                    height: parent * 0.5
+                    anchors.top: parent.top
+                    anchors.topMargin: 200
+                    spacing: 0
+
+
+                    Column {
+                        id: columNeg
+                        width:parent
+                        height: parent
+
+
+                    Repeater{
+                        model: ["0", "1", "2", "3", "4", "5", "6"]
+                        JogButtonMod {
+                            id: jointNeg
+                            text: distance.toFixed(2)
+
+                            enabled: true
+                            Layout.fillHeight: true
+                            Layout.fillWidth: false
+                            direction: -1
+                            distance: 0.1
+                            axis: modelData
+
+
+                        }
+                    }
+
+                    }
+
+                    Column {
+                        id: columnPos
+
+                        Layout.fillHeight: true
+                    Repeater{
+                        model: ["0", "1", "2", "3", "4", "5", "6"]
+                        JogButtonMod {
+                            id: jointpos
+
+                            enabled: true
+                            Layout.fillHeight: true
+                            Layout.fillWidth: false
+                            direction: 1
+                            distance: 0.1
+                            axis: modelData
+
+                        }
+                    }
+
+               }
+                }
+
+                GridLayout {
+                    id: feedrateAndHomeGrid
                     anchors.left: parent.left
-                    anchors.leftMargin: 0
                     anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 0
                     rows: 1
-                    columns: 2
+                    columns: 3
 
                     HomeButton {
-                        width: height
-                        height: grid1.height * 0.8
-                        anchors.left: parent.left
-                        anchors.bottom: parent.bottom
+
                         axis: -1
                         axisName: "All"
                         color: "white"
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
                         fontSize: root.fontSize
                     }
 
                     JogVelocityKnob {
                         id: jogVelocityKnob
-                        height: grid1.height
-                         width: height
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 0
-                        anchors.left: parent.left
-                        anchors.leftMargin: 200
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+
                         axisName: "JogVel"
                         axis: -1
                     }
 
                     FeedrateKnob {
                         id: feedrateKnob
-                        height: grid1.height
+
                         axisName: "Feedrate"
                         width: height
-                        anchors.left: jogVelocityKnob.right
-                        anchors.leftMargin: 10
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 0
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+
                     }
 
 
                 }
 
-                Grid {
-                    id: grid
-                    x: 97
-                    y: 0
-                    width: 168
-                    height: 400
-                    scale: 1
-                    anchors.left: parent.left
-                    anchors.leftMargin: 101
-                    spacing: 10
-                    rows: 7
-                    columns: 2
-
-                    JogButton {
-                        id: joint1neg
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J1 -"
-                        axis: 0
-                        distance: 0.1
-                        direction: -1
-                    }
-
-                    JogButton {
-                        id: joint1pos
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J1 +"
-                        axis: 0
-                        distance: 0.1
-                        direction: 1
-                    }
-
-                    JogButton {
-                        id: joint2neg
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J2 -"
-                        axis: 1
-                        distance: 0.1
-                        direction: -1
-                    }
-
-                    JogButton {
-                        id: joint2pos
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J2 +"
-                        axis: 1
-                        distance: 0.1
-                        direction: 1
-                    }
-
-                    JogButton {
-                        id: joint3neg
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J3 -"
-                        axis: 2
-                        distance: 0.1
-                        direction: -1
-                    }
-
-                    JogButton {
-                        id: joint3pos
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J3 +"
-                        axis: 2
-                        distance: 0.1
-                        direction: 1
-                    }
-
-                    JogButton {
-                        id: joint4neg
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J4 -"
-                        axis: 3
-                        distance: 0.1
-                        direction: -1
-                    }
-
-                    JogButton {
-                        id: joint4pos
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J4 +"
-                        axis: 3
-                        distance: 0.1
-                        direction: 1
-                    }
-
-                    JogButton {
-                        id: joint5neg
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J5 -"
-                        axis: 4
-                        distance: 0.1
-                        direction: -1
-                    }
-
-                    JogButton {
-                        id: joint5pos
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J5 +"
-                        axis: 4
-                        distance: 0.1
-                        direction: 1
-                    }
-
-                    JogButton {
-                        id: joint6neg
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J6 -"
-                        axis: 5
-                        distance: 0.1
-                        direction: -1
-                    }
-
-                    JogButton {
-                        id: joint6pos
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J6 +"
-                        axis: 5
-                        distance: 0.1
-                        direction: 1
-                    }
-
-                    JogButton {
-                        id: joint7neg
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J7 -"
-                        axis: 6
-                        distance: 0.1
-                        direction: -1
-                    }
-
-                    JogButton {
-                        id: joint7pos
-                        width: parent.height * 0.4
-                        height: parent.height * 0.2
-                        text: "J7 +"
-                        axis: 6
-                        distance: 0.1
-                        direction: 1
-                    }
 
 
-                }
 
 
 
@@ -341,7 +222,56 @@ ApplicationItem {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*##^## Designer {
-    D{i:0;autoSize:true;height:480;width:637}D{i:7;anchors_x:0}D{i:11;anchors_x:101}
+    D{i:0;autoSize:true;height:480;width:640}D{i:6;anchors_width:472}
 }
  ##^##*/

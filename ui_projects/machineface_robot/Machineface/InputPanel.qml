@@ -9,7 +9,6 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: InputPanel.top
-        ...
     }
     InputPanel {
         id:inputPanel

@@ -1,12 +1,15 @@
 TEMPLATE = app
 NAME = Machineface_robot
 
-QT += qml quick widgets
+QT += qml quick widgets quickcontrols2
 CONFIG += c++11
 CONFIG += disable-desktop
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    documenthandler.cpp
+
 QTPLUGIN += qtvirtualkeyboardplugin
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+            qtquickcontrols2.conf
 
 QML_FILES = $$PWD/$$NAME/*.qml
 OTHER_FILES += $$QML_FILES
@@ -29,5 +32,18 @@ android: {
 #TRANSLATIONS_OUT_PATH = $$PWD/$$NAME/translations
 #include(translation.pri)
 
-DISTFILES += \
+DISTFILES += \ \ \
+    qtquickcontrols2.conf \
+    texteditor/+touch/texteditor.html \
+    texteditor/doc/images/qtquickcontrols2-texteditor-desktop.jpg \
+    texteditor/doc/images/qtquickcontrols2-texteditor-touch.jpg \
+    texteditor/doc/src/qtquickcontrols2-texteditor.qdoc \
+    texteditor/fonts/fontello.ttf \
+    texteditor/images/qt-logo.png \
+    texteditor/qml/+touch/texteditor.qml \
+    texteditor/qtquickcontrols2.conf
+
+HEADERS += \
+    documenthandler.h
+
 

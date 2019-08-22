@@ -26,3 +26,8 @@ JogKnob {
     }
 }
 
+
+/*##^## Designer {
+    D{i:0;height:200;width:200}
+}
+ ##^##*/

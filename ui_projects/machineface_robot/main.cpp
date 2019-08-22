@@ -1,12 +1,38 @@
-#include <QApplication>
+
 #include <QQmlApplicationEngine>
 #include <QTranslator>
 #include <QLibraryInfo>
+#include <QIcon>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QSettings>
+#include <QQuickStyle>
+#include <QQmlFileSelector>
+#include <QFontDatabase>
+#include <QDebug>
+
+#include "documenthandler.h"
 
 int main(int argc, char *argv[])
 {
+
+    QGuiApplication::setApplicationName("Automotive");
+    QGuiApplication::setOrganizationName("QtProject");
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+
+    QGuiApplication app(argc, argv);
+
+    QIcon::setThemeName("robot");
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
-    QApplication app(argc, argv);
+
+    QFontDatabase fontDatabase;
+    if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
+        qWarning() << "Failed to load fontello.ttf";
+
+    qmlRegisterType<DocumentHandler>("io.qt.examples.texteditor", 1, 0, "DocumentHandler");
+
 
     QQmlApplicationEngine engine;
     engine.addImportPath(QStringLiteral("imports"));
