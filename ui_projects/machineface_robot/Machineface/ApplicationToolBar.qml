@@ -82,7 +82,7 @@ Rectangle {
         TouchButton{
             Layout.fillWidth: true
             Layout.preferredHeight: width
-            action:
+            action: texte
             iconSource: ""
 
         }
