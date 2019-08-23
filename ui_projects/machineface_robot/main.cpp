@@ -12,8 +12,6 @@
 #include <QFontDatabase>
 #include <QDebug>
 
-#include "documenthandler.h"
-
 int main(int argc, char *argv[])
 {
 
@@ -27,11 +25,7 @@ int main(int argc, char *argv[])
     QIcon::setThemeName("robot");
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
 
-    QFontDatabase fontDatabase;
-    if (fontDatabase.addApplicationFont(":/fonts/fontello.ttf") == -1)
-        qWarning() << "Failed to load fontello.ttf";
 
-    qmlRegisterType<DocumentHandler>("io.qt.examples.texteditor", 1, 0, "DocumentHandler");
 
 
     QQmlApplicationEngine engine;

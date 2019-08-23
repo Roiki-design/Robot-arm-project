@@ -83,6 +83,16 @@ ServiceWindow {
         anchors.left: parent.left
         width: window.height * 0.1
     }
+    StatusBar{
+        id:statusBar
+
+            AxisComboBox {
+                id: axisComboBox
+            }
+
+    }
+
+
 
 
     GridLayout {
@@ -107,7 +117,7 @@ ServiceWindow {
             style: TabStyle{}
             JogControlTab { id: jogControlTab }
             GCodeTab { id: gCodeTab}
-            //programTab {}
+            JogStickTab { id: jogstickTab}
             SettingsTab { id: settingsTab}
           }
 
@@ -125,6 +135,7 @@ ServiceWindow {
 
 
             MdiTab { anchors.bottomMargin: 10}
+            ProgramTab {}
         }
 
 

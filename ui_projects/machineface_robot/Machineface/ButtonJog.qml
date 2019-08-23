@@ -72,7 +72,7 @@ ApplicationItem {
                     height: parent * 0.5
                     anchors.top: parent.top
                     anchors.topMargin: 200
-                    spacing: 0
+                    spacing: 2
 
 
                     Column {

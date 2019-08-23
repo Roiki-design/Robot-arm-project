@@ -39,7 +39,7 @@ Button {
     rightPadding: 4
     topPadding: 12
     bottomPadding: 12
-    implicitWidth: 90
+    implicitWidth: 120
     implicitHeight: 60
 
     icon.name: "placeholder"

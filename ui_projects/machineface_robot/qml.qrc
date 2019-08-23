@@ -36,7 +36,7 @@
         <file>Machineface/DRO/StyledDro.qml</file>
         <file>Machineface/DRO/StyledDroBase.qml</file>
         <file>Machineface/TabStyle.qml</file>
-        <file>Machineface/programTab.qml</file>
+        <file>Machineface/ProgramTab.qml</file>
         <file>Automotive/icons/automotive/44x44/air-con.png</file>
         <file>Automotive/icons/automotive/44x44/command.png</file>
         <file>Automotive/icons/automotive/44x44/message.png</file>
@@ -143,9 +143,7 @@
         <file>Automotive/qml/GlowingLabel.qml</file>
         <file>Machineface/JogButtonMod.qml</file>
         <file>Machineface/ButtonStyle.qml</file>
-        <file>Machineface/texteditor/+touch/texteditor.html</file>
-        <file>Machineface/texteditor/fonts/fontello.ttf</file>
-        <file>Machineface/texteditor/images/qt-logo.png</file>
-        <file>Machineface/Texteditor.qml</file>
+        <file>Machineface/StatusBar.qml</file>
+        <file>Machineface/JogStickTab.qml</file>
     </qresource>
 </RCC>
