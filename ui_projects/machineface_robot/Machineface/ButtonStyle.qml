@@ -15,10 +15,9 @@ ButtonStyle{
                 id: text
                 anchors.fill: parent
                 anchors.centerIn: parent
-                text: styleData.title
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                color: styleData.selected ? "white": "black"
+                color: "white"
 
             }
         }

@@ -11,7 +11,7 @@ Tab {
     Rectangle {
         anchors.fill: parent
         anchors.margins: Screen.pixelDensity
-        color: "transparent"
+        color: colorLightGrey
         border.width: 1
         border.color: systemPalette.shadow
 

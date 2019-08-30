@@ -1,4 +1,4 @@
-import QtQuick 2.2
+import QtQuick 2.6
 import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.2
@@ -10,6 +10,7 @@ import Machinekit.Application.Controls 1.0
 import Machinekit.Service 1.0
 import Machinekit.HalRemote 1.0
 import Machinekit.HalRemote.Controls 1.0
+
 
 ApplicationItem {
     property var numberModel: defaultHandler.incrementsModel
@@ -39,6 +40,8 @@ ApplicationItem {
         axis: -1
     }
 
+Rectangle{
+    border.color: colorMain
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: Screen.pixelDensity
@@ -68,35 +71,71 @@ ApplicationItem {
 
                 RowLayout {
                     id: jogButtonGrid
-                    width:parent * 0.6
-                    height: parent * 0.5
-                    anchors.top: parent.top
-                    anchors.topMargin: 200
                     spacing: 2
 
 
                     Column {
-                        id: columNeg
-                        width:parent
-                        height: parent
+                        id: labelColumn
+                        Layout.fillHeight: true
 
 
-                    Repeater{
-                        model: ["0", "1", "2", "3", "4", "5", "6"]
-                        JogButtonMod {
-                            id: jointNeg
-                            text: distance.toFixed(2)
+                        Repeater {
+                            model: ["0", "1", "2", "3", "4", "5", "6"]
 
-                            enabled: true
-                            Layout.fillHeight: true
-                            Layout.fillWidth: false
-                            direction: -1
-                            distance: 0.1
-                            axis: modelData
+                            Button {
+                                id: button
+                                text: modelData
+                                leftPadding: 4
+                                rightPadding: 4
+                                topPadding: 12
+                                bottomPadding: 12
+                                implicitWidth: 170 *(1 + (((window.height -1280) / 100)/10))
+                                implicitHeight: 55 * (1 + (((window.width -800) / 100)/10))
+                                enabled: false
+                                icon.name: "placeholder"
+                                icon.width: 44
+                                icon.height: 44
+                                display: Button.TextUnderIcon
 
 
+
+                                contentItem: Text {
+                                    text: button.text
+                                    font: button.font
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                             }
+
+
+
+                               }
+                            }
                         }
-                    }
+
+
+
+
+                    Column {
+                        id: columNeg
+                        Layout.fillHeight: true
+
+
+
+                        Repeater{
+                            model: ["0", "1", "2", "3", "4", "5", "6"]
+                            JogButtonMod {
+                                id: jointNeg
+
+                                enabled: true
+                                Layout.fillHeight: true
+                                Layout.fillWidth: false
+                                direction: -1
+                                distance: 0.1
+                                axis: modelData
+
+
+                            }
+                        }
 
                     }
 
@@ -104,62 +143,28 @@ ApplicationItem {
                         id: columnPos
 
                         Layout.fillHeight: true
-                    Repeater{
-                        model: ["0", "1", "2", "3", "4", "5", "6"]
-                        JogButtonMod {
-                            id: jointpos
+                        Repeater{
+                            model: ["0", "1", "2", "3", "4", "5", "6"]
+                            JogButtonMod {
+                                id: jointpos
 
-                            enabled: true
-                            Layout.fillHeight: true
-                            Layout.fillWidth: false
-                            direction: 1
-                            distance: 0.1
-                            axis: modelData
+                                enabled: true
+                                Layout.fillHeight: true
+                                Layout.fillWidth: false
+                                direction: 1
+                                distance: 0.1
+                                axis: modelData
 
+                            }
                         }
-                    }
-
-               }
-                }
-
-                GridLayout {
-                    id: feedrateAndHomeGrid
-                    anchors.left: parent.left
-                    anchors.bottom: parent.bottom
-                    rows: 1
-                    columns: 3
-
-                    HomeButton {
-
-                        axis: -1
-                        axisName: "All"
-                        color: "white"
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        fontSize: root.fontSize
-                    }
-
-                    JogVelocityKnob {
-                        id: jogVelocityKnob
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-
-                        axisName: "JogVel"
-                        axis: -1
-                    }
-
-                    FeedrateKnob {
-                        id: feedrateKnob
-
-                        axisName: "Feedrate"
-                        width: height
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
 
                     }
 
 
                 }
+
+
+
 
 
 
@@ -176,6 +181,7 @@ ApplicationItem {
     }
 
 
+}
 }
 
 
@@ -271,7 +277,50 @@ ApplicationItem {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*##^## Designer {
-    D{i:0;autoSize:true;height:480;width:640}D{i:6;anchors_width:472}
+    D{i:0;autoSize:true;height:480;width:640}D{i:6;anchors_height:420;anchors_width:242}
 }
  ##^##*/

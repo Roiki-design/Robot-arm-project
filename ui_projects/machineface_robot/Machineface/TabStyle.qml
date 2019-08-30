@@ -3,9 +3,9 @@ import QtQuick.Controls.Styles 1.4
 
 TabViewStyle{
     tab: Rectangle {
-        color:colorDarkGrey
-        implicitWidth: Math.max(text.width +100, 80)
-        implicitHeight: 100
+              color: "black"
+              implicitWidth: Math.max(text.width +100, 80)
+              implicitHeight: 100
 
         Rectangle {
             anchors.fill:parent
@@ -25,6 +25,10 @@ TabViewStyle{
 
             }
         }
+    frame: Rectangle{
+        color: "transparent"
+
+    }
     }
 
 

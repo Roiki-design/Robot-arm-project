@@ -10,7 +10,7 @@ ScrollView {
 
     ColumnLayout {
         id: container
-        width: root.width - Screen.pixelDensity * 4
+        anchors.fill: parent
         spacing: Screen.pixelDensity
     }
 }

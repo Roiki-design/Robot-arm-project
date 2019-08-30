@@ -50,7 +50,7 @@ AbstractDigitalReadOut {
 
     DroElementFrame {
         id: extraFrame
-        width: 450
+        width: 400
         height: visible ? implicitHeight : 0
         anchors.top: mainFrame.bottom
         anchors.left: parent.left
@@ -86,7 +86,7 @@ AbstractDigitalReadOut {
 
     DroElementFrame {
         id: g5xOffsetsFrame
-        width: 450
+        width: 400
         height: visible ? implicitHeight : 0
         anchors.top: mainFrame.bottom
         groupText: qsTr("%1 Offsets").arg(root.g5xNames[root.g5xIndex - 1])
@@ -111,7 +111,7 @@ AbstractDigitalReadOut {
 
     DroElementFrame {
         id: g92OffsetsFrame
-        width: 450
+        width: 400
         height: visible ? implicitHeight : 0
         anchors.top: mainFrame.bottom
         anchors.left: g5xOffsetsFrame.right
@@ -137,7 +137,7 @@ AbstractDigitalReadOut {
 
     DroElementFrame {
         id: toolOffsetsFrame
-        width: 450
+        width: 400
         height: visible ? implicitHeight : 0
         anchors.top: g5xOffsetsFrame.bottom
         groupText: qsTr("Tool Offsets")

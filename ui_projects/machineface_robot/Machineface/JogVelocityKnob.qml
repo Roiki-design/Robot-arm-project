@@ -3,7 +3,7 @@ import Machinekit.Controls 1.0
 import Machinekit.Application.Controls 1.0
 
 JogKnob {
-    property int axis: 0
+    property int axis: -1
     property alias units: velocityHandler.units
 
 
@@ -20,10 +20,7 @@ JogKnob {
         axis: root.axis
     }
 
-    TooltipArea {
-        text: qsTr("Set " + axis + " axis velocity")
-        interval: 1000
-    }
+
 }
 
 

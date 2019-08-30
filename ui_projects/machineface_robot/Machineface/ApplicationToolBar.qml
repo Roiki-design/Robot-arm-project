@@ -5,7 +5,6 @@ import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
 import Machinekit.Controls 1.0
 import Machinekit.Application.Controls 1.0
-import "texteditor/qml/+touch"
 
 Rectangle {
     color: systemPalette.dark
@@ -79,13 +78,6 @@ Rectangle {
             Layout.fillHeight: true
         }
 
-        TouchButton{
-            Layout.fillWidth: true
-            Layout.preferredHeight: width
-            action: texte
-            iconSource: ""
-
-        }
 
         TouchButton {
             Layout.fillWidth: true

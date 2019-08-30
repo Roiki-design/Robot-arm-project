@@ -6,8 +6,11 @@ import Machinekit.PathView 1.0
 Tab {
     title: qsTr("GCode")
 
-    SourceView {
+    Rectangle{
+        color:colorLightGrey
+      SourceView {
         anchors.fill: parent
         anchors.margins: Screen.pixelDensity * 1
     }
+}
 }

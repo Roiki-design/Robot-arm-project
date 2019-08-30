@@ -6,6 +6,6 @@ Item {
     StyledDroBase {
         id: base
         anchors.top: parent
-        scale: Math.min(root.width / implicitWidth, root.height / implicitHeight)
+        scale: 0.8
     }
 }

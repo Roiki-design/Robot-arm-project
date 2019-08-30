@@ -145,5 +145,6 @@
         <file>Machineface/ButtonStyle.qml</file>
         <file>Machineface/StatusBar.qml</file>
         <file>Machineface/JogStickTab.qml</file>
+        <file>Machineface/FeedrateAndHomeGrid.qml</file>
     </qresource>
 </RCC>

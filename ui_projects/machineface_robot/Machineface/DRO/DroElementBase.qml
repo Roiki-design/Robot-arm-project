@@ -14,7 +14,7 @@ Item {
     property double rightValue: 0.0
 
     id: root
-    width: 1000
+    width: displayPanel.width
     height: 80
 
     Rectangle {

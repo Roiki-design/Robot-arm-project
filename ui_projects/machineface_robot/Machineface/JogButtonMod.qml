@@ -23,6 +23,7 @@
 import QtQuick 2.0
 import QtQuick.Controls.Imagine 2.12
 import QtQuick.Controls 2.12
+import QtQuick.Window 2.0
 import Machinekit.Application 1.0
 import Machinekit.Application.Controls 1.0
 
@@ -35,13 +36,13 @@ Button {
     property int direction: 1
     property double velocity: jogAction.settings.initialized ? jogAction.settings.values["axis" + axis]["jogVelocity"] : 0.0
 
+
     leftPadding: 4
     rightPadding: 4
     topPadding: 12
     bottomPadding: 12
-    implicitWidth: 120
-    implicitHeight: 60
-
+    implicitWidth: 170 *(1 + (((window.height -1280) / 100)/10))
+    implicitHeight: 55 * (1 + (((window.width -800) / 100)/10))
     icon.name: "placeholder"
     icon.width: 44
     icon.height: 44

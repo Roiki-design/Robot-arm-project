@@ -1,17 +1,20 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.2
-import QtQuick.Layouts 1.1
+import QtQuick.Layouts 1.3
 import QtQuick.Window 2.0
 import Machinekit.Application.Controls 1.0
 
 
-Tab {
-    id: mditab
-    title: qsTr("MDI")
+
+
 
     ColumnLayout {
         id: columnLayout
-        anchors.fill: parent
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignHCenter
+        Layout.topMargin: 50
+
 
         JogStick {
             id: jogStick1
@@ -38,7 +41,7 @@ Tab {
         }
     }
 
-}
+
 
 
 

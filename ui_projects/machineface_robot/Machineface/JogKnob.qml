@@ -10,9 +10,9 @@ Knob {
     style: "Pie"
     pieType: "Flat"
     suffix: ""
-    foregroundColor: Qt.lighter(root.color, 1.2)
-    borderColor: Qt.darker(root.color, 1.1)
-    backgroundColor: systemPalette.light
+    foregroundColor: colorDarkGrey
+    borderColor: colorMain
+    backgroundColor: "transparent"
     stepSize: 1.0
     decimals: 0
 

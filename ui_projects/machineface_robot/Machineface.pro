@@ -4,7 +4,8 @@ NAME = Machineface_robot
 QT += qml quick widgets quickcontrols2
 CONFIG += c++11
 CONFIG += disable-desktop
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    Machineface/documenthandler.cpp
 
 QTPLUGIN += qtvirtualkeyboardplugin
 RESOURCES += qml.qrc \
@@ -35,6 +36,7 @@ DISTFILES += \ \ \
     qtquickcontrols2.conf \
 
 
-HEADERS +=
+HEADERS += \
+    Machineface/documenthandler.h
 
 

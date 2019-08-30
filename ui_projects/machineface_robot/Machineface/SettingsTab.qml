@@ -8,7 +8,9 @@ import Machinekit.Application.Controls 1.0
 Tab {
     title: qsTr("Settings")
 
-    ScrollView {
+    Rectangle{
+        color: colorLightGrey
+        ScrollView {
         id: scrollView
         anchors.fill: parent
         anchors.margins: Screen.pixelDensity
@@ -84,10 +86,18 @@ Tab {
                 }
             }
 
+            MaximumVelocitySlider {
+                id: maximumVelocitySlider
+            }
+
 
         }
     }
 }
+
+}
+
+
 
 /*##^## Designer {
     D{i:0;autoSize:true;height:702;width:427}

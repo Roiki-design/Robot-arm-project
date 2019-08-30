@@ -22,8 +22,8 @@ ButtonStyle {
 
     background: Rectangle {
         id: rect
-        implicitWidth: 100
-        implicitHeight: 25
+        implicitWidth: 150
+        implicitHeight: 50
         border.width: control.activeFocus ? 2 : 1
         border.color: Qt.darker(baseColor, 1.1+darkness)
         radius: root.radius == -1 ? Math.min(control.width, control.height) * 0.1 : root.radius
