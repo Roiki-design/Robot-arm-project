@@ -1,0 +1,23 @@
+newring joint_0_ring 16384 stream
+newring joint_1_ring 16384 stream
+newring joint_2_ring 16384 stream
+newring joint_3_ring 16384 stream
+newring joint_4_ring 16384 stream
+newring joint_5_ring 16384 stream
+newring joint_6_ring 16384 stream
+
+
+loadrt ringread ring=joint_0_ring
+loadrt ringread ring=joint_1_ring
+loadrt ringread ring=joint_2_ring
+loadrt ringread ring=joint_3_ring
+loadrt ringread ring=joint_4_ring
+loadrt ringread ring=joint_5_ring
+loadrt ringread ring=joint_6_ring
+
+newthread fast 1000000    fp
+
+# the 'dequeue and print message' thread function
+addf ringread  fast
+
+start
