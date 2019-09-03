@@ -98,7 +98,9 @@ class RobotPost(object):
         self.addline('F15000')        
         
     def ProgFinish(self, progname):
-        self.addline('; ENDPROC')
+        self.addline('; End of program: %s' % progname)
+        self.nId = self.nId + 1
+        self.addline('N%05i M30' % self.nId)
         
     def ProgSave(self, folder, progname, ask_user=False, show_result=False):
         progname = progname + '.' + self.PROG_EXT
@@ -140,12 +142,12 @@ class RobotPost(object):
     def MoveJ(self, pose, joints, conf_RLF=None):
         """Add a joint movement"""
         self.nId = self.nId + 1
-        self.addline('N%02i G101 ' % self.nId + joints_2_str(joints))
+        self.addline('N%05i G53 G00 ' % self.nId + joints_2_str(joints))
         
     def MoveL(self, pose, joints, conf_RLF=None):
         """Add a linear movement"""
         self.nId = self.nId + 1
-        self.addline('N%02i G1 ' % self.nId + pose_2_str(self.REF_FRAME*pose, joints))
+        self.addline('N%02i G01 ' % self.nId + pose_2_str(self.REF_FRAME*pose, joints))
         #self.addline('N%02i G90 G1 ' % self.nId + joints_2_str(joints))
         
     def MoveC(self, pose1, joints1, pose2, joints2, conf_RLF_1=None, conf_RLF_2=None):
@@ -153,9 +155,9 @@ class RobotPost(object):
         self.nId = self.nId + 1
         xyz1 = (self.REF_FRAME*pose1).Pos()
         xyz2 = (self.REF_FRAME*pose2).Pos()        
-        self.addline('N%02i G90 G102 X%.3f Y%.3f Z%.3f I1=%.3f J1=%.3f K1=%.3f' % (self.nId, xyz2[0], xyz2[1], xyz2[2], xyz1[0], xyz1[1], xyz1[2]))
+        self.addline('N%05i G02 X=%.3f Y=%.3f Z=%.3f I1=%.3f J1=%.3f K1=%.3f' % (self.nId, xyz2[0], xyz2[1], xyz2[2], xyz1[0], xyz1[1], xyz1[2]))
         #self.addline('N%02i G102 X%.3f Y%.3f Z%.3f I1=%.3f J1=%.3f K1=%.3f' % (self.nId, xyz1[0], xyz1[1], xyz1[2], xyz2[0]-xyz1[0], xyz2[1]-xyz1[1], xyz2[2]-xyz1[2]))		
-        
+       
     def setFrame(self, pose, frame_id=None, frame_name=None):
         """Change the robot reference frame"""
         self.REF_FRAME = pose
@@ -172,9 +174,9 @@ class RobotPost(object):
     def Pause(self, time_ms):
         """Pause the robot program"""
         if time_ms < 0:
-            self.addline('; PAUSE')
+            self.addline('; M0)
         else:
-            self.addline('; WAIT %.3f' % (time_ms*0.001))
+            self.addline('; G4 P%' % time_ms)
     
     def setSpeed(self, speed_mms):
         """Changes the robot speed (in mm/s)"""
