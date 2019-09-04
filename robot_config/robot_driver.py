@@ -6,31 +6,17 @@
 #
 # 
 #
-import sys
-from robolink import *    # RoboDK's API
-from robodk import *      # Math toolbox for robots
-from machinekit import hal
-import linuxcnc
+from twisted.internet import protocol, reactor, endpoints
+From machinekit import hal
 
-import socket
-RDK = Robolink()
+class RobotControl(protocol.Protocol):
+    def dataReceived(self, data):
+        print(data)
 
-#Parameters to connect to the robot is being set
-HOST = "10.10.10.5" #robot ip
-PORT = 30002 #port to connect to
+class RobotFactory(protocol.Factory):
+    def buildProtocol(self, addr):
+        return RobotControl()
 
-# robot and tool object is being set
-robot = RDK.Item('Select a robot', ITEM_TYPE_ROBOT)
-tool = RDK.Item('Gripper')
-
-
-RDK.setSimulationSpeed(1)
-robot.setSpeed(1500, 1500, 2000, 180)
-
-
-
-def main():
-    
-
-if __name__ == "__main__":
-    main()
+endpoint = TCP4ServerEndpoint(reactor, 8007)
+endpoint.listen(robotFactory())
+reactor.run()
