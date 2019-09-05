@@ -11,6 +11,7 @@
 
 # ----------------------------------------------------
 # This file is a sample POST PROCESSOR script to generate robot programs for a custom 6 axis robot
+# Designed to work with LinuxCNC/machinekit
 #
 # To edit/test this POST PROCESSOR script file:
 # Select "Program"->"Add/Edit Post Processor", then select your post or create a new one.
