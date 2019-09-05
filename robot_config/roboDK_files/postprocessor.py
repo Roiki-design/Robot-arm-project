@@ -71,8 +71,12 @@ def joints_2_str(joints):
 # Object class that handles the robot instructions/syntax
 class RobotPost(object):
     """Robot post object"""
-    PROG_EXT = 'cnc'        # set the program extension
+    PROG_EXT = 'gcode'        # set the program extension
     
+    MAX_LINES_X_PROG = 3000
+    NCLUDE_SUB_PROGRAMS = False
+
+
     # other variables
     ROBOT_POST = ''
     ROBOT_NAME = ''
@@ -95,8 +99,7 @@ class RobotPost(object):
     def ProgStart(self, progname):
         self.nId = self.nId + 1
         self.addline('; program: %s()' % progname)
-        self.addline('G161')
-        self.addline('G90')
+        self.addline('G17 G21 G90')
         self.addline('F15000')        
         
     def ProgFinish(self, progname):
@@ -174,15 +177,17 @@ class RobotPost(object):
         pass
         
     def Pause(self, time_ms):
+        self.nId = self.nId + 1
         """Pause the robot program"""
         if time_ms < 0:
-            self.addline('N%05i M0' % )
+            self.addline('N%05i M0' % (self.nId))
         else:
-            self.addline('N%05i G4 P%' % time_ms)
+            self.addline('N%05i G4 P%' % (self.nId, time_ms/100))
     
     def setSpeed(self, speed_mms):
         """Changes the robot speed (in mm/s)"""
-        self.addline('N%05i F%.3f' % (speed_mms*60))
+        self.nId = self.nId + 1
+        self.addline('N%05i F%.3f' % (self.nId, speed_mms*60))
     
     def setAcceleration(self, accel_mmss):
         """Changes the robot acceleration (in mm/s2)"""
@@ -202,20 +207,22 @@ class RobotPost(object):
 
     def setDO(self, io_var, io_value):
         """Sets a variable (digital output) to a given value"""
+        self.nId = self.nId + 1
         if type(io_var) != str:  # set default variable name if io_var is a number
             io_var = 'OUT[%s]' % str(io_var)
         if type(io_value) != str: # set default variable value if io_value is a number
             if io_value > 0:
                 io_value = 'TRUE'
-                self.addline('N%05i M62 P%d' % (io_var)
+                self.addline('N%05i M62 P%d' % (self.nId, io_var))
             else:
                 io_value = 'FALSE'
-.               self.addline('N%05i M63 P%d' % (io_var)
+                self.addline('N%05i M63 P%d' % (self.nId, io_var))
 
         # at this point, io_var and io_value must be string values
-        self.addline('N%05i M62 P%d' % (io_var))
+        #self.addline('N%05i M62 P%d' % (self.nId, io_var))
 
     def waitDI(self, io_var, io_value, timeout_ms=-1):
+        self.nId = self.nId + 1 
         """Waits for a variable (digital input) io_var to attain a given value io_value. Optionally, a timeout can be provided."""
         if type(io_var) != str:  # set default variable name if io_var is a number
             io_var = 'IN[%s]' % str(io_var)
@@ -228,13 +235,14 @@ class RobotPost(object):
         # at this point, io_var and io_value must be string values
         if timeout_ms < 0:
             #self.addline('WAIT FOR %s==%s' % (io_var, io_value))
-             self.addline('N%05i M66 P%d L%d' % (io_var, io_value))
+             self.addline('N%05i M66 P%d L%d' % (self.nId, io_var, io_value))
         else:
             #self.addline('WAIT FOR %s==%s TIMEOUT=%.1f' % (io_var, io_value, timeout_ms))
-            self.addline('N%05i M66 P%d L%d Q.1f ' % (io_var, io_valuem timeout_ms))
+            self.addline('N%05i M66 P%d L%d Q%.1f ' % (self.nId, io_var, io_valuem timeout_ms))
 
     def RunCode(self, code, is_function_call = False):
         """Adds code or a function call"""
+        self.nId = self.nId + 1
         if is_function_call:
             code.replace(' ','_')
             if not code.endswith(')'):
