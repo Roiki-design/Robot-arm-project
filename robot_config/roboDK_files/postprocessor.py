@@ -93,6 +93,7 @@ class RobotPost(object):
         self.nAxes = robot_axes
         
     def ProgStart(self, progname):
+        self.nId = self.nId + 1
         self.addline('; program: %s()' % progname)
         self.addline('G161')
         self.addline('G90')
@@ -175,13 +176,13 @@ class RobotPost(object):
     def Pause(self, time_ms):
         """Pause the robot program"""
         if time_ms < 0:
-            self.addline('; M0)
+            self.addline('N%05i M0' % )
         else:
-            self.addline('; G4 P%' % time_ms)
+            self.addline('N%05i G4 P%' % time_ms)
     
     def setSpeed(self, speed_mms):
         """Changes the robot speed (in mm/s)"""
-        self.addline('F%.3f' % (speed_mms*60))
+        self.addline('N%05i F%.3f' % (speed_mms*60))
     
     def setAcceleration(self, accel_mmss):
         """Changes the robot acceleration (in mm/s2)"""
@@ -206,11 +207,13 @@ class RobotPost(object):
         if type(io_value) != str: # set default variable value if io_value is a number
             if io_value > 0:
                 io_value = 'TRUE'
+                self.addline('N%05i M62 P%d' % (io_var)
             else:
                 io_value = 'FALSE'
+.               self.addline('N%05i M63 P%d' % (io_var)
 
         # at this point, io_var and io_value must be string values
-        self.addline('%s=%s' % (io_var, io_value))
+        self.addline('N%05i M62 P%d' % (io_var))
 
     def waitDI(self, io_var, io_value, timeout_ms=-1):
         """Waits for a variable (digital input) io_var to attain a given value io_value. Optionally, a timeout can be provided."""
@@ -225,10 +228,11 @@ class RobotPost(object):
         # at this point, io_var and io_value must be string values
         if timeout_ms < 0:
             #self.addline('WAIT FOR %s==%s' % (io_var, io_value))
-             self.addline('M66 P%d L%d' % (io_var, io_value))
+             self.addline('N%05i M66 P%d L%d' % (io_var, io_value))
         else:
             #self.addline('WAIT FOR %s==%s TIMEOUT=%.1f' % (io_var, io_value, timeout_ms))
-            self.addline('M66 P%d L%d Q.1f ' % (io_var, io_valuem timeout_ms))
+            self.addline('N%05i M66 P%d L%d Q.1f ' % (io_var, io_valuem timeout_ms))
+
     def RunCode(self, code, is_function_call = False):
         """Adds code or a function call"""
         if is_function_call:
