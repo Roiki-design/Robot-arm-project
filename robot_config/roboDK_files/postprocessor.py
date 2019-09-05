@@ -223,10 +223,11 @@ class RobotPost(object):
 
         # at this point, io_var and io_value must be string values
         if timeout_ms < 0:
-            self.addline('WAIT FOR %s==%s' % (io_var, io_value))
+            #self.addline('WAIT FOR %s==%s' % (io_var, io_value))
+             self.addline('M66 P%d L%d' % (io_var, io_value))
         else:
-            self.addline('WAIT FOR %s==%s TIMEOUT=%.1f' % (io_var, io_value, timeout_ms))
-        
+            #self.addline('WAIT FOR %s==%s TIMEOUT=%.1f' % (io_var, io_value, timeout_ms))
+            self.addline('M66 P%d L%d Q.1f ' % (io_var, io_valuem timeout_ms))
     def RunCode(self, code, is_function_call = False):
         """Adds code or a function call"""
         if is_function_call:
