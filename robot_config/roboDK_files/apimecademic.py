@@ -373,7 +373,7 @@ global ROBOT_MOVING
 global ROBOT_MONITOR_LAST_JOINTS
 
 ROBOT = MecaRobot()
-ROBOT_IP = "192.168.0.100"      # IP of the robot
+ROBOT_IP = "10.10.0.5"      # IP of the robot
 ROBOT_PORT = 10000          # Communication port of the robot
 ROBOT_MOVING = False
 ROBOT_MONITOR_LAST_JOINTS = None
