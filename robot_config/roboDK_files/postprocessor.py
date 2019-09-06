@@ -99,7 +99,7 @@ class RobotPost(object):
     def ProgStart(self, progname):
         self.nId = self.nId + 1
         self.addline('; program: %s()' % progname)
-        self.addline('G17 G21 G90')
+        self.addline('G17 G21 G90 G61')
         self.addline('F15000')        
         
     def ProgFinish(self, progname):
@@ -147,12 +147,12 @@ class RobotPost(object):
     def MoveJ(self, pose, joints, conf_RLF=None):
         """Add a joint movement"""
         self.nId = self.nId + 1
-        self.addline('N%05i G53 G00 ' % self.nId + joints_2_str(joints))
+        self.addline('N%05i G53 G0 ' % self.nId + joints_2_str(joints))
         
     def MoveL(self, pose, joints, conf_RLF=None):
         """Add a linear movement"""
         self.nId = self.nId + 1
-        self.addline('N%02i G01 ' % self.nId + pose_2_str(self.REF_FRAME*pose, joints))
+        self.addline('N%02i G1 ' % self.nId + pose_2_str(self.REF_FRAME*pose, joints))
         #self.addline('N%02i G90 G1 ' % self.nId + joints_2_str(joints))
         
     def MoveC(self, pose1, joints1, pose2, joints2, conf_RLF_1=None, conf_RLF_2=None):
